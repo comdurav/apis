@@ -9,7 +9,76 @@
     },
     "version": "1.0"
   },
+  "paths": {
+    "/language/detect": {
+      "post": {
+        "summary": "Detect Language",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetectLang"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Query"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    }
+  },
   "components": {
+    "schemas": {
+      "Error": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "Query": {
+        "required": [
+          "q"
+        ],
+        "properties": {
+          "q": {
+            "type": "string"
+          }
+        }
+      },
+      "DetectLang": {
+        "required": [
+          "language",
+          "isReliable"
+        ],
+        "properties": {
+          "language": {
+            "type": "string"
+          },
+          "isReliable": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
     "securitySchemes": {
       "Api Key": {
         "type": "apiKey",
